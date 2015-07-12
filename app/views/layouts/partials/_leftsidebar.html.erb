@@ -52,12 +52,12 @@
                     </li>
                     <li class="nav-dropdown <%= 'active open' if controller?('pages')%>">
                         <a href="#">
-                            <i class="fa fa-fw fa-file-text"></i> Pages
+                            <i class="fa fa-fw fa-file-text"></i> Projects
                         </a>
                         <ul class="nav-sub">
-                            <li class="<%= 'active' if controller?('pages') && action?('blank_page') %>">
-                                <a href="/pages/blank_page">
-                                     Blank Page
+                            <li class="<%= 'active' if controller?('pages') && action?('new_project') %>">
+                                <a href="/pages/new_project">
+                                     New Project
                                 </a>
                             </li>
                             <li class="<%= 'active' if controller?('pages') && action?('blank_page2') %>">
