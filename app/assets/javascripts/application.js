@@ -15,6 +15,15 @@
 // require bootstrap-slider/js/bootstrap-slider
 
 $(function() {
+
+    $("#new_project").on("submit", function(event){
+      // $('#project_editor').editable('save');
+
+      var html = $('#project_editor').editable('getHTML', false, false);
+      $("#project_content").val(html);
+
+    });
+
       $('#project_editor')
         .editable({
           // Set the save param.
@@ -27,7 +36,7 @@ $(function() {
           saveRequestType: 'POST',
 
           // Additional save params.
-          saveParams: {id: "PLACEHOLDER FOR ID"},
+          saveParams: {id: "PLACEHOLDER FOR ID" },
 
           inlineMode: false,
 
@@ -37,8 +46,3 @@ $(function() {
           // Do something here.
         })
     });
-
-    $('#saveButton').click (function () {
-      $('#project_editor').editable('save')
-      // window.location = '/projects/show'
-    })
