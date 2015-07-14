@@ -13,7 +13,6 @@ class PagesController < ApplicationController
 
   def create
     @project = Project.new params.require(:project).permit(:title, :description, :content)
-    
 
     if @project.save
       redirect_to root_path
@@ -21,15 +20,28 @@ class PagesController < ApplicationController
       flash.now[:alert] = "Please complete all steps"
       render :new_project
     end
-
   end
 
   def blank_page2
   end
 
-  # private
-  # def the_title
-  #   @project = Project.new
-  # end
+  def educator_signup
+    @educator = Educator.new
+    render :layout => "pages"
+  end
+
+  def educator_create
+    @educator = Educator.new params.require(:educator).permit(:first_name, :last_name, :username, :email, :password, :password_digest)
+    if @educator.save
+      session[:id] = @educator.id
+      redirect_to root_path, success: "Cool! You're signed up #{@educator.username}!"
+    else
+      render :educator_signup, alert: "Something wrong."
+    end
+  end
+
+  def educator_profile
+    @educator_info = Educator.find_by id: session[:id]
+  end
 
 end

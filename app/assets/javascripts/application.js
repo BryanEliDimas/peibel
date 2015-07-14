@@ -11,15 +11,16 @@
 //= require wizard/js/loader.min
 //= require fullscreen/jquery.fullscreen-min
 //= require respond/respond.min
-// require bootstrap/js/bootstrap.min
-// require bootstrap-slider/js/bootstrap-slider
+//= require bootstrap/js/bootstrap.min
+//= require bootstrap-slider/js/bootstrap-slider
+
 
 $(function() {
 
     $("#new_project").on("submit", function(event){
       // $('#project_editor').editable('save');
 
-      var html = $('#project_editor').editable('getHTML', false, false);
+      var html = $('#project_editor').editable('getHTML', true, true);
       $("#project_content").val(html);
 
     });

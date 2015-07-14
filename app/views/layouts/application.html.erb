@@ -27,6 +27,8 @@
         <aside class="sidebar sidebar-left"> <%= render partial: "layouts/partials/leftsidebar" %> </aside>
         <!-- Content wraper -->
          <section class="main-content-wrapper">
+           <!-- My partial for alerts -->
+            <%= render partial: "layouts/partials/alerts" %>
             <!-- Main content view  -->
                 <%= yield %>
             <!-- Footer -->
