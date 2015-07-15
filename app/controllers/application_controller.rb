@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :success # add custom flash message
 
+
   def signed_in?
     if (session[:user] == nil)
       redirect_to signup_path  # sign up path
@@ -16,5 +17,10 @@ class ApplicationController < ActionController::Base
       loggedin_user_id = User.find_by(id: session[:user])
       loggedin_user_id
     end
+  end
+
+  def user_full_name
+    loggedin_user_id = User.find_by(id: session[:user])
+    loggedin_user_id.full_name
   end
 end

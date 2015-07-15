@@ -93,4 +93,16 @@ class PagesController < ApplicationController
     render :layout => "application"
   end
 
+  def project_details
+    project_id = params[:project_id]
+
+    response = Http.headers("X-Mashape-Key" => "CLIYw538fSmshhOhHM1vZDHfZmvTp1yuWWljsnQW0uoRDyPWAo", "Accept" => "application/json").get("https://devru-instructables.p.mashape.com/json-api/showInstructable?id=#{project_id}")
+    json = JSON.parse response
+    data = json.to_hash
+
+    @project = data
+
+    render :layout => "application"
+  end
+
 end

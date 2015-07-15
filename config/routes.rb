@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'pages/new_project', as: :new_project
   post 'pages/choose_project', as: :choose_project
   get 'pages/my_projects', as: :my_projects
+  get 'pages/project_details', as: :project_details
 
   get 'dashboard/index'
 

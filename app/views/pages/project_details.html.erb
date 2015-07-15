@@ -1,0 +1,35 @@
+<section id="main-content" class="animated fadeInUp">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h1>
+              <%= @project["title"] %>
+              <br>
+              <div class="col-md-6">
+                <%= image_tag @project["coverImage"]["downloadUrl"], class: "img-responsive text-center" %>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn btn-success btn-trans">Purchase</button>
+              </div>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <% @project["steps"].each do |step| %>
+        <h2><%= step["title"] %></h2>
+        <p>
+          <%= step["body"].html_safe %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+</section>

@@ -19,8 +19,8 @@
             <% end %>
             <div class="caption">
               <h4><%= item["title"] %></h4>
-              <%= link_to choose_project_path(instructables_id: item["id"]), method: :post do %>
-                <%= button_tag "Choose", class: "btn btn-success" %>
+              <%= link_to project_details_path(project_id: item["id"]) do %>
+                <%= button_tag "View", class: "btn btn-primary" %>
               <% end %>
             </div>
           </div>
