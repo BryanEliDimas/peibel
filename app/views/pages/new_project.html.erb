@@ -1,16 +1,27 @@
-<div class="col-md-12">
-    <h1>NEW PROJECT</h1>
-    <hr>
-
-    <%= simple_form_for @project do |f| %>
-      <%= f.input :title %>
-      <%= f.input :description %>
-      <%= f.input :content, as: :hidden, id: "project-content" %>
-
-      <div id="project_editor"></div>
-
-      <%= f.submit class: "btn btn-primary" %>
-    <% end %>
-
-
+<div class="pageheader">
+    <h2>New Project Page</h2>
+    <p class="description">Blank starter page</p>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li class="active">Blank Page</li>
+        </ol>
+    </div>
 </div>
+<section id="main-content">
+    <div class="row">
+      <div class="col-md-12">
+          <h1>NEW PROJECT</h1>
+          <hr>
+          <%= simple_form_for @project do |f| %>
+            <%= f.input :title %>
+            <%= f.input :description %>
+            <%= f.input :content, as: :hidden, id: "project-content" %>
+
+            <div id="project_editor"></div>
+
+            <%= f.submit class: "btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+</section>

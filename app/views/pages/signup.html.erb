@@ -15,14 +15,17 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <p >Already a member? <a href="pages-login.html"><strong>Sign In</strong></a></p>
-                        <%= simple_form_for @educator do |f| %>
+                        <p >Already a member?
+                          <!-- <a href="pages-login.html"><strong>Sign In</strong></a> -->
+                          <%= link_to "Sign In", signin_path %>
+                        </p>
+                        <%= simple_form_for @user do |f| %>
                           <%= f.input :first_name %>
                           <%= f.input :last_name %>
                           <%= f.input :username %>
                           <%= f.input :email %>
                           <%= f.input :password %>
-                          <%= f.input :password_digest, label: "Confirm Password" %>
+                          <%= f.input :password_confirmation, label: "Confirm Password" %>
                           <%= f.submit "Sign Up", class: "btn btn-primary" %>
                         <% end %>
 

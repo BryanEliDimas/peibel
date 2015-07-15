@@ -1,17 +1,18 @@
+require 'http'
+
 class PagesController < ApplicationController
   # before_action :the_title, only: [:new_project, :create_project ]
 
   def new_project
     @project = Project.new
+    render :layout => "pages"
   end
 
-  def project_basic_details # sole responsibility is to store title and description in session
-    session[:projectTitle] = params[:projectTitle]
-    session[:projectDescription] = params[:projectDescription]
-    redirect_to :new_project
+  def project_basic_details
+    # show projects page
   end
 
-  def create
+  def create  # create project
     @project = Project.new params.require(:project).permit(:title, :description, :content)
 
     if @project.save
@@ -25,23 +26,50 @@ class PagesController < ApplicationController
   def blank_page2
   end
 
-  def educator_signup
-    @educator = Educator.new
+  def signup
+    @user = User.new
     render :layout => "pages"
   end
 
-  def educator_create
-    @educator = Educator.new params.require(:educator).permit(:first_name, :last_name, :username, :email, :password, :password_digest)
-    if @educator.save
-      session[:id] = @educator.id
-      redirect_to root_path, success: "Cool! You're signed up #{@educator.username}!"
+  def signup_post
+    @user = User.new params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
+    if @user.save
+      session[:user] = @user.id
+      redirect_to root_path, success: "Cool! You're signed up #{@user.first_name}!"
     else
       render :educator_signup, alert: "Something wrong."
     end
   end
 
   def educator_profile
-    @educator_info = Educator.find_by id: session[:id]
+    # @educator = Educator.find_by id: session[:id]
+  end
+
+  def signin
+
+  end
+
+  def signin_post
+    email = params[:session][:email]
+    password = params[:session][:password]
+
+    user = User.find_by(email: email)
+
+    if (user) && (user.authenticate password)
+      session[:user] = user.id
+      redirect_to root_path, success: "You're signed in #{user.full_name}!"
+    else
+      render :signin, notice: "Please try again."
+    end
+  end
+
+  def signout
+    session.delete :user
+    redirect_to root_path
+  end
+
+  def browse_projects
+
   end
 
 end

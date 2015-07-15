@@ -4,4 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   add_flash_types :success # add custom flash message
+
+  def signed_in?
+    if (session[:user] == nil)
+      redirect_to signup_path  # sign up path
+    end
+  end
 end
