@@ -1,0 +1,39 @@
+<div class="pageheader">
+    <h2>My Projects</h2>
+    <p class="description">The projects I created</p>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li class="active">Browse Projects</li>
+        </ol>
+    </div>
+</div>
+<section id="main-content">
+  <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <% if @projects != nil %>
+
+          <% @projects.each do |proj| %>
+          <div class="page-header">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h1>
+                  <%= proj.title %>
+                  <br>
+                  <small><%= proj.description %></small>
+                </h1>
+              </div>
+            </div>
+
+          </div>
+            <p>
+              <%= proj.content.html_safe %>
+            </p>
+            <hr>
+          <% end %>
+        <% else %>
+          @projects is nil bro O.o
+        <% end %>
+      </div>
+  </div>
+</section>

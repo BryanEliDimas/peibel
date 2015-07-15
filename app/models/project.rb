@@ -1,4 +1,4 @@
 class Project < ActiveRecord::Base
-
-  validates :title, :description, :content, presence: true
+  belongs_to :user
+  validates :title, :description, :content, :user_id, presence: true
 end

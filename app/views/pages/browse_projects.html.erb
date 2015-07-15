@@ -1,6 +1,6 @@
 <div class="pageheader">
     <h2>Browse Projects</h2>
-    <p class="description">Blank starter page</p>
+    <p class="description">Choose a project from Instructables.com</p>
     <div class="breadcrumb-wrapper hidden-xs">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
@@ -9,9 +9,24 @@
     </div>
 </div>
 <section id="main-content">
+  <% @items.in_groups_of(4, false) do |items| %>
     <div class="row">
-        <div class="col-md-12 col-lg-12">
-          
+      <% items.each do |item| %>
+        <div class="col-sm-12 col-md-3">
+          <div class="thumbnail">
+            <%= link_to "http://instructables.com".concat(item["url"]), target: "_blank" do %>
+              <%= image_tag item["imageUrl"], class: "img img-responsive" %>
+            <% end %>
+            <div class="caption">
+              <h4><%= item["title"] %></h4>
+              <%= link_to choose_project_path(instructables_id: item["id"]), method: :post do %>
+                <%= button_tag "Choose", class: "btn btn-success" %>
+              <% end %>
+            </div>
+          </div>
         </div>
+      <% end %>
     </div>
+  <% end %>
+
 </section>

@@ -5,7 +5,7 @@
                </div>
                <div class="profile-body dropdown">
                      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                       <h4>Mike Adams <span class="caret"></span></h4>
+                       <h4><%= @user_full_name %> <span class="caret"></span></h4>
                      </a>
                    <!-- <small class="title">Front-end Developer</small> -->
                    <ul class="dropdown-menu animated fadeInRight" role="menu">
@@ -50,14 +50,24 @@
                 <h5 class="sidebar-header">Navigation</h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="<%= 'active' if controller?('dashboard') && action?('index') %>">
-                        <a href="/dashboard">
-                            <i class="fa  fa-fw fa-tachometer"></i> Dashboard
-                        </a>
+                        <%= link_to root_path do %>
+                          <i class="fa  fa-fw fa-tachometer"></i> Dashboard
+                        <% end %>
                     </li>
                     <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('new_project') %>">
-                        <a href="/pages/new_project">
-                            <i class="fa fa-fw fa-file-text"></i> New Project
-                        </a>
+                        <%= link_to new_project_path do %>
+                          <i class="fa fa-fw fa-file-text"></i> New Project
+                        <% end %>
+                    </li>
+                    <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('browse_projects') %>">
+                        <%= link_to browse_projects_path do %>
+                          <i class="fa fa-fw fa-desktop"></i> Browse Projects
+                        <% end %>
+                    </li>
+                    <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('my_projects') %>">
+                        <%= link_to my_projects_path do %>
+                          <i class="fa fa-fw fa-file-text"></i> My Projects
+                        <% end %>
                     </li>
                 </ul>
             </nav>

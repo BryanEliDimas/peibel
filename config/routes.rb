@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post 'pages/signin' => 'pages#signin_post', as: :signin_post
   delete 'signout' => 'pages#signout', as: :signout
   get 'pages/browse_projects', as: :browse_projects
+  get 'pages/new_project', as: :new_project
+  post 'pages/choose_project', as: :choose_project
+  get 'pages/my_projects', as: :my_projects
 
   get 'dashboard/index'
 
@@ -16,7 +19,6 @@ Rails.application.routes.draw do
 
   # view routes
   get '/dashboard' => 'dashboard#index'
-  get 'pages/new_project', as: :new_project
   get 'pages/blank_page2'
   post 'pages/project_basic_details'
 

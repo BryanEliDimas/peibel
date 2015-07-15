@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :projects
   has_secure_password
   validates :first_name, :last_name, :username, length: { minimum: 3 }
   validates :first_name, :last_name, :username, :email, :password, presence: true

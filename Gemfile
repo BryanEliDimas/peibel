@@ -39,3 +39,4 @@ gem "wysiwyg-rails"
 gem 'simple_form'
 gem 'pry'
 gem 'bcrypt', '~> 3.1.7'
+gem 'http'
