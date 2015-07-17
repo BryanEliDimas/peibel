@@ -12,13 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def user_id
-    if session[:user] != nil
-      loggedin_user_id = User.find_by(id: session[:user])
-      loggedin_user_id
-    end
-  end
-
   def user_full_name
     loggedin_user_id = User.find_by(id: session[:user])
     loggedin_user_id.full_name

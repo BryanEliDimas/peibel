@@ -1,0 +1,52 @@
+<div class="pageheader">
+    <h1>Edit my account details</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li><a href="/">Dashboard</a>
+            </li>
+            <li>Profile</li>
+            <li class="active">Edit</li>
+        </ol>
+    </div>
+</div>
+<section id="main-content" class="animated fadeInUp">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">Bio</h3>
+              <div class="actions pull-right">
+               <i class="fa fa-expand"></i>
+                  <i class="fa fa-chevron-down"></i>
+                  <i class="fa fa-times"></i>
+              </div>
+          </div>
+          <div class="panel-body">
+              <%= simple_form_for @current_user, url: update_bio_path, method: :put do |f| %>
+                <%= f.input :bio, as: :text, input_html: { rows: 10 } %>
+                <%= f.submit "Update", class: "btn btn-primary" %>
+              <% end %>
+          </div>
+      </div>
+    </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Skills</h3>
+                <div class="actions pull-right">
+                 <i class="fa fa-expand"></i>
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <%= simple_form_for @current_user, url: update_skills_path, method: :put do |f| %>
+                  <%= f.input :skills, label: "Comma separated", placeholder: "HTML, CSS, Javascript" %>
+                  <%= f.submit "Update", class: "btn btn-primary" %>
+                <% end %>
+            </div>
+        </div>
+      </div>
+  </div>
+</section>

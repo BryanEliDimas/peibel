@@ -37,7 +37,7 @@ $(function() {
           saveRequestType: 'POST',
 
           // Additional save params.
-          saveParams: {id: "PLACEHOLDER FOR ID" },
+          // saveParams: {id: "PLACEHOLDER FOR ID" },
 
           inlineMode: false,
 

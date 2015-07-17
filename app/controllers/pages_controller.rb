@@ -3,7 +3,7 @@ require 'http'
 class PagesController < ApplicationController
   # before_action :the_title, only: [:new_project, :create_project ]
   before_action do
-    user_id
+    @current_user = User.find_by(id: session[:user])
   end
 
   def new_project
@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
   def create  # create project
     @project = Project.new params.require(:project).permit(:title, :description, :content)
-    @project.user_id = user_id # comes from ApplicationController
+    @project.user_id = @current_user # comes from ApplicationController
 
     if @project.save
       redirect_to root_path
@@ -39,6 +39,7 @@ class PagesController < ApplicationController
     @user = User.new params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
     if @user.save
       session[:user] = @user.id
+      session[:username] = @user.username
       redirect_to root_path, success: "Cool! You're signed up #{@user.first_name}!"
     else
       render :educator_signup, alert: "Something wrong."
@@ -61,6 +62,7 @@ class PagesController < ApplicationController
 
     if (user) && (user.authenticate password)
       session[:user] = user.id
+      session[:username] = user.username
       redirect_to root_path, success: "You're signed in #{user.full_name}!"
     else
       render :signin, notice: "Please try again."
@@ -89,7 +91,7 @@ class PagesController < ApplicationController
   end
 
   def my_projects
-    @projects = Project.where(:user_id => user_id ).reverse
+    @projects = Project.where(:user_id => @current_user.id ).reverse
     render :layout => "application"
   end
 
@@ -103,6 +105,10 @@ class PagesController < ApplicationController
     @project = data
 
     render :layout => "application"
+  end
+
+  def profile
+
   end
 
 end
