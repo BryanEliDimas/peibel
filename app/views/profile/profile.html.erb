@@ -17,10 +17,12 @@
                           <div class="panel-body profile-wrapper">
                               <div class="col-md-2">
                                   <div class="profile-pic text-center">
-                                      <img  src="<%= image_path('bryandimas.jpg') %>" alt="" class="img-circle">
+                                      <img  src="<%= image_path('avatar_default.png') %>" alt="" class="img-circle">
                                   </div>
                                   <br>
-                                  <div class="text-center"><i class="fa fa-map-marker"></i> Houston, TX</div>
+                                  <% if @current_user.city != nil %>
+                                    <div class="text-center"><i class="fa fa-map-marker"></i> <%= @current_user.city.capitalize %><% ", #{@current_user.state.capitalize}" unless @current_user.state == nil %></div>
+                                  <% end %>
                               </div>
                               <div class="col-md-6">
                                   <div class="profile-info">
@@ -133,15 +135,17 @@
                           <div class="panel-body">
                               <ul>
                                 <h1 class="text-center">PROJECTS</h1>
-                                  <!-- <li>
-                                      <div class="date">
-                                          <span></span>
-                                      </div>
-                                      <h4>Lorem ipsum dolor sit</h4>
-                                      <p>
-                                          Tortor metus suscipit lectus lacinia mi. Duis quis ullamcorper, felis consequat ut felis sit, pellentesque sit nunc, porttitor a, neque enim metus sed dictum scelerisque. Ante ornare, ante nunc ac, et feugiat justo urna, pharetra velit convallis, sit magna odio in nunc sit.
-                                      </p>
-                                  </li> -->
+                                  <% @projects.each do |proj| %>
+                                    <li>
+                                        <div class="date">
+                                            <span style="font-size: 12px"><%= proj.created_at.strftime("%m/%d\r'%y") unless proj == nil %></span>
+                                        </div>
+                                        <h4><%= proj.title %></h4>
+                                        <p>
+                                            <%= proj.description unless proj.description == nil %>
+                                        </p>
+                                    </li>
+                                  <% end %>
                               </ul>
 
                           </div>

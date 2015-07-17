@@ -1,0 +1,43 @@
+<div class="pageheader">
+   <h1>Tutors in your city</h1>
+   <div class="breadcrumb-wrapper hidden-xs">
+       <span class="label">You are here:</span>
+       <ol class="breadcrumb">
+           <li><a href="/">Dashboard</a>
+           </li>
+           <li>Pages</li>
+           <li class="active">Find tutors</li>
+       </ol>
+   </div>
+</div>
+<section id="main-content" class="animated fadeInUp">
+  <% if (@tutors != nil) && (@tutors != []) %>
+    <% @tutors.each do |tutor| %>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="page-header">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h1>
+                  <div class="col-md-2">
+                    <%= link_to profile_path(username: tutor.username) do %>
+                      <img class="img-circle profile-image" src="<%= image_path('avatar_default.png') %>">
+                    <% end %>
+                  </div>
+                  <%= link_to profile_path(username: tutor.username) do %>
+                    <%= tutor.full_name %><% end %> | <small><%= tutor.skills %></small>
+                </h1>
+                <p>
+                  <%= tutor.bio %>
+                </p>
+                <p>
+                  <%= tutor.projects.count %> projects
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</section>

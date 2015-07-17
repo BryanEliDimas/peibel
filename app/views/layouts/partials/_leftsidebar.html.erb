@@ -73,5 +73,10 @@
                           <i class="fa fa-fw fa-desktop"></i> Browse Projects
                         <% end %>
                     </li>
+                    <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('find_tutors') %>">
+                        <%= link_to find_tutors_path do %>
+                          <i class="icon-map"></i> Find tutors
+                        <% end %>
+                    </li>
                 </ul>
             </nav>

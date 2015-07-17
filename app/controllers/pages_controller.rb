@@ -111,4 +111,12 @@ class PagesController < ApplicationController
 
   end
 
+  def find_tutors
+    if (@current_user.city != nil) && (@tutors != [])
+      @tutors = User.where(city: @current_user.city)
+    end
+
+    render :layout => "application"
+  end
+
 end

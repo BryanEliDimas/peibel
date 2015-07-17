@@ -14,9 +14,12 @@ Rails.application.routes.draw do
   get 'pages/project_details', as: :project_details
 
   get 'profile/edit' => 'profile#edit', as: :edit_profile
-  put 'profile' => 'profile#update_bio', as: :update_bio
-  put 'profile' => 'profile#update_skills', as: :update_skills
+  put 'update_bio' => 'profile#update_bio', as: :update_bio
+  put 'update_skills' => 'profile#update_skills', as: :update_skills
+  put 'update_city' => 'profile#update_city', as: :update_city
   get 'profile/:username' => 'profile#profile', as: :profile
+
+  get 'pages/find_tutors', as: :find_tutors
 
   get 'dashboard/index'
 
