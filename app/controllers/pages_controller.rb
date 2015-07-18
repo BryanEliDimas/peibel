@@ -46,12 +46,7 @@ class PagesController < ApplicationController
     end
   end
 
-  def educator_profile
-    # @educator = Educator.find_by id: session[:id]
-  end
-
   def signin
-
   end
 
   def signin_post

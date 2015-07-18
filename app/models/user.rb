@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :projects
   has_secure_password
+  acts_as_messageable
+
   validates :first_name, :last_name, :username, length: { minimum: 3 }, on: :create
   validates :first_name, :last_name, :username, :email, :password, presence: true, on: :create
   validates :username, length: { maximum: 16 }, on: :create
@@ -9,5 +11,15 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  #Returning the email address of the model if an email should be sent for this object (Message or Notification).
+  #If no mail has to be sent, return nil.
+  def mailboxer_email(object)
+    #Check if an email should be sent for that object
+    #if true
+    return "#{email}"
+    #if false
+    #return nil
   end
 end

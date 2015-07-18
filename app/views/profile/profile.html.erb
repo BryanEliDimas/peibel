@@ -20,14 +20,14 @@
                                       <img  src="<%= image_path('avatar_default.png') %>" alt="" class="img-circle">
                                   </div>
                                   <br>
-                                  <% if @current_user.city != nil %>
-                                    <div class="text-center"><i class="fa fa-map-marker"></i> <%= @current_user.city.capitalize %><% ", #{@current_user.state.capitalize}" unless @current_user.state == nil %></div>
+                                  <% if @user.city != nil %>
+                                    <div class="text-center"><i class="fa fa-map-marker"></i> <%= @user.city.capitalize %><%= ", #{@user.state.capitalize}" unless @user.state == nil %></div>
                                   <% end %>
                               </div>
                               <div class="col-md-6">
                                   <div class="profile-info">
-                                      <h1>Bryan Dimas</h1>
-                                      <span class="text-muted">Web Developer</span>
+                                      <h1><%= @user.full_name %></h1>
+                                      <span class="text-muted"><%= @user.title %></span>
                                       <p>
                                         <% if @bio != nil %>
                                           <%= @bio %>
@@ -38,9 +38,12 @@
                                       </p>
                                       <div class="connect">
                                           <!-- <button type="button" class="btn btn-success btn-trans"><span class="fa fa-check"></span> Following</button> -->
+
+                                          <%= link_to compose_path(username: params[:username]) do %>
                                           <button type="button" class="btn btn-primary btn-trans">
                                             <span class="fa fa-comments"></span> Message
                                           </button>
+                                          <% end %>
                                       </div>
                                       <!-- <div class="social">
                                           <ul>

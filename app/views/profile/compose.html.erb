@@ -1,0 +1,62 @@
+<br>
+<div class="col-md-9" id="view-mail-wrapper">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <header>
+                                    <h2>New Message</h2>
+                                </header>
+                                <div class="row view-mail-header">
+                                    <div class="col-md-12">
+                                        <div class="view-mail-reply pull-right">
+                                            <!-- <button class="btn btn-sm btn-primary">Send</button> -->
+                                            <!-- <button class="btn btn-default btn-sm tooltips" data-original-title="Discard" data-toggle="tooltip" data-placement="top" title="Discard"><i class="fa fa-times"></i>
+                                              Discard
+                                            </button> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel view-compose-body">
+                                            <div class="panel-body">
+                                              <%= simple_form_for @message, url: send_path, method: :post do |f| %>
+                                                <%= f.input :to, as: :hidden, input_html: { value: params[:username] } %>
+                                                <%= f.input :subject, label: false, placeholder: "Subject:" %>
+                                                <%= f.input :body, label: false, placeholder: "Enter text...", as: :text, input_html: { rows: 10 } %>
+                                                    <br>
+                                                    <%= f.submit "Send", class: "btn btn-sm btn-primary pull-right" %>
+                                              <% end %>
+                                                <!-- <div class="form-group">
+                                                    <input type="email" class="form-control" id="to" placeholder="To:">
+                                                    <div class="send-options">
+                                                        <a href="javascript:void(0);" class="ccLink">Cc</a>
+                                                        <a href="javascript:void(0);" class="bccLink">Bcc</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" id="form-group-cc">
+                                                    <input type="text" class="form-control" id="cc" placeholder="Cc:">
+                                                </div>
+                                                <div class="form-group" id="form-group-bcc">
+                                                    <input type="text" class="form-control" id="bcc" placeholder="Bcc:">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="subject" placeholder="Subject:">
+                                                </div> -->
+
+                                                <!-- <textarea class="textarea form-control" rows="5" cols="40" placeholder="Enter text ..." style="width: 100%; height: 200px"></textarea> -->
+                                            </div>
+                                            <!-- <div class="panel-footer">
+                                                <button class="btn btn-sm btn-primary pull-right">Send</button>
+                                                <button class="btn btn-default btn-sm "><i class="fa fa-times"></i> Discard</button>
+                                                <button class="btn btn-default btn-sm pull-right"><i class="fa fa-paperclip"></i> Attach a File</button>
+
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>

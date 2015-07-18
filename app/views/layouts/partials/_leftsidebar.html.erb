@@ -29,9 +29,10 @@
                           <% end %>
                        </li>
                        <li>
-                           <a href="javascript:void(0);">
-                               <span class="icon"><i class="fa fa-envelope"></i>
-                               </span>Messages</a>
+                         <%= link_to inbox_path do %>
+                            <span class="icon"><i class="fa fa-envelope"></i>
+                            Messages
+                         <% end %>
                        </li>
                        <li>
                             <%= link_to edit_profile_path do %>
