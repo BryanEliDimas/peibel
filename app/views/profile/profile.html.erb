@@ -139,15 +139,17 @@
                               <ul>
                                 <h1 class="text-center">PROJECTS</h1>
                                   <% @projects.each do |proj| %>
-                                    <li>
-                                        <div class="date">
-                                            <span style="font-size: 12px"><%= proj.created_at.strftime("%m/%d\r'%y") unless proj == nil %></span>
-                                        </div>
-                                        <h4><%= proj.title %></h4>
-                                        <p>
-                                            <%= proj.description unless proj.description == nil %>
-                                        </p>
-                                    </li>
+                                      <li>
+                                          <div class="date">
+                                              <span style="font-size: 12px"><%= proj.created_at.strftime("%m/%d\r'%y") unless proj == nil %></span>
+                                          </div>
+                                          <%= link_to project_path(permalink: proj.permalink) do %>
+                                            <h4><%= proj.name %></h4>
+                                          <% end %>
+                                          <p>
+                                              <%= proj.description %>
+                                          </p>
+                                      </li>
                                   <% end %>
                               </ul>
 

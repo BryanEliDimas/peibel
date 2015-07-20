@@ -5,7 +5,7 @@ class ProfileController < ApplicationController
 
   def profile
     @user = User.find_by(username: params[:username])
-    @bio = @current_user.bio
+    @bio = @user.bio
     # Takes string of comma-separated skills
     # and turns into array
 
@@ -14,7 +14,7 @@ class ProfileController < ApplicationController
     end
 
     unless @user == nil
-      @projects = Project.where(:user_id => @user.id ).reverse
+      @projects = Project.where(user_id: @user.id).reverse
     end
 
     render layout: "pages"

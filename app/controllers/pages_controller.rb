@@ -16,14 +16,14 @@ class PagesController < ApplicationController
   end
 
   def create  # create project
-    @project = Project.new params.require(:project).permit(:title, :description, :content)
-    @project.user_id = @current_user # comes from ApplicationController
+    @project = Project.new params.require(:project).permit(:name, :description, :price, :permalink, :content, :outline)
+    @project.permalink = SecureRandom.hex(8)
+    @project.user_id = @current_user.id # comes from ApplicationController
 
     if @project.save
       redirect_to root_path
     else
-      flash.now[:alert] = "Please complete all steps"
-      render :new_project
+      render :new_project, alert: "Please complete all steps"
     end
   end
 
@@ -40,6 +40,7 @@ class PagesController < ApplicationController
     if @user.save
       session[:user] = @user.id
       session[:username] = @user.username
+      session[:full_name] = @user.full_name
       redirect_to root_path, success: "Cool! You're signed up #{@user.first_name}!"
     else
       render :educator_signup, alert: "Something wrong."
@@ -58,6 +59,7 @@ class PagesController < ApplicationController
     if (user) && (user.authenticate password)
       session[:user] = user.id
       session[:username] = user.username
+      session[:full_name] = user.full_name
       redirect_to root_path, success: "You're signed in #{user.full_name}!"
     else
       render :signin, notice: "Please try again."
@@ -69,7 +71,7 @@ class PagesController < ApplicationController
     redirect_to root_path
   end
 
-  def browse_projects
+  def instructables
     # Mashable API for Instructables
     response = Http.headers("X-Mashape-Key" => "CLIYw538fSmshhOhHM1vZDHfZmvTp1yuWWljsnQW0uoRDyPWAo", "Accept" => "application/json").get("https://devru-instructables.p.mashape.com/list?limit=20&offset=0&sort=recent&type=id&category=technology")
     json = JSON.parse response
@@ -110,6 +112,18 @@ class PagesController < ApplicationController
     if (@current_user.city != nil) && (@tutors != [])
       @tutors = User.where(city: @current_user.city)
     end
+
+    render :layout => "application"
+  end
+
+  def project
+    @project = Project.find_by(permalink: params[:permalink])
+
+    render :layout => "application"
+  end
+
+  def local_projects
+    @projects = Project.joins(:user).where("users.city" => @current_user.city)
 
     render :layout => "application"
   end

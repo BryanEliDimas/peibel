@@ -17,19 +17,21 @@
           <div class="page-header">
             <div class="panel panel-default">
               <div class="panel-body">
-                <h1>
-                  <%= proj.title %>
-                  <br>
-                  <small><%= proj.description %></small>
-                </h1>
+                <% if proj.permalink != nil %>
+                  <%= link_to project_path(permalink: proj.permalink) do %>
+                    <h1>
+                      <%= proj.name %> &nbsp;&nbsp;&nbsp;
+                      <span style="color: green"><%= "$#{proj.price}" unless proj.price == nil %></span>
+                      <br>
+                      <small><%= proj.description %></small>
+                    </h1>
+                  <% end %>
+                <% end %>
               </div>
             </div>
 
           </div>
-            <p>
-              <%= proj.content.html_safe %>
-            </p>
-            <hr>
+          <hr>
           <% end %>
         <% else %>
           @projects is nil bro O.o

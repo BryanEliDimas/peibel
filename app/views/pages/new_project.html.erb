@@ -1,6 +1,12 @@
+<% if alert %>
+  <%= alert %>
+<% elsif notice %>
+  <%= notice %>
+<% end %>
+
 <div class="pageheader">
     <h2>New Project Page</h2>
-    <p class="description">Blank starter page</p>
+    <p class="description">Create new project</p>
     <div class="breadcrumb-wrapper hidden-xs">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
@@ -14,8 +20,10 @@
           <h1>NEW PROJECT</h1>
           <hr>
           <%= simple_form_for @project do |f| %>
-            <%= f.input :title %>
-            <%= f.input :description %>
+            <%= f.input :name, placeholder: "Title of your project" %>
+            <%= f.input :description, placeholder: "Short description" %>
+            <%= f.input :outline, placeholder: "Must include for paid projects. Numbered steps 1. , 2. , 3. , etc." %>
+            <%= f.input :price,as: :integer, placeholder: "In cents", input_html: {style: "width: 8em"} %>
             <%= f.input :content, as: :hidden, id: "project-content" %>
 
             <div id="project_editor"></div>
