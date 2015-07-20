@@ -13,7 +13,7 @@
 //= require respond/respond.min
 //= require bootstrap/js/bootstrap.min
 //= require bootstrap-slider/js/bootstrap-slider
-
+//= require payola
 
 $(function() {
 
