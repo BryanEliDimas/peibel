@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Payola::Engine => '/payola', as: :payola
-  
+
   # peibel routes
   get 'signup' => 'pages#signup', as: :signup
   post 'pages/signup_post', as: :users
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   put 'update_title' => 'profile#update_title', as: :update_title
   get 'profile/:username' => 'profile#profile', as: :profile
 
+  post 'follow/:username' => 'profile#follow', as: :follow
+
   get 'inbox' => 'profile#inbox', as: :inbox
   get 'message/:username' => 'profile#compose', as: :compose
   post 'send_message' => 'profile#msg', as: :send
@@ -38,7 +40,6 @@ Rails.application.routes.draw do
 
   # view routes
   get '/dashboard' => 'dashboard#index'
-  get 'pages/blank_page2'
   post 'pages/project_basic_details'
 
 

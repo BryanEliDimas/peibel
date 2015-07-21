@@ -6,9 +6,11 @@ class ProfileController < ApplicationController
   def profile
     @user = User.find_by(username: params[:username])
     @bio = @user.bio
+    @followers = @user.all_follows
+    @following = @user.all_following
+
     # Takes string of comma-separated skills
     # and turns into array
-
     unless @user.skills == nil
       @skills = @user.skills.split(', ')
     end
@@ -68,4 +70,17 @@ class ProfileController < ApplicationController
 
     redirect_to profile_path(username: @current_user.username)
   end
+
+  def follow
+    who = User.find_by(username: params[:username])
+
+    if who != @current_user
+      @current_user.follow(who)
+      redirect_to profile_path(username: who.username), success: "You are now following #{who.full_name}"
+    else
+      redirect_to root_path, alert: "Unable to follow yourself."
+    end
+
+  end
+
 end

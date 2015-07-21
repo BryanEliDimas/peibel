@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :projects
   has_secure_password
   acts_as_messageable
+  acts_as_follower
+  acts_as_followable
 
   validates :first_name, :last_name, :username, length: { minimum: 3 }, on: :create
   validates :first_name, :last_name, :username, :email, :password, presence: true, on: :create

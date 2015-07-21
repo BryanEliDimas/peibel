@@ -24,7 +24,9 @@
 
 <body>
   <section class="container animated fadeInUp">
-          <%= yield %>
+    <!-- My partial for alerts -->
+    <%= render partial: "layouts/partials/alerts" %>
+        <%= yield %>
   </section>
 
       <!-- Global scripts -->

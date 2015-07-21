@@ -1,7 +1,6 @@
 require 'http'
 
 class PagesController < ApplicationController
-  # before_action :the_title, only: [:new_project, :create_project ]
   before_action do
     @current_user = User.find_by(id: session[:user])
   end
@@ -104,13 +103,9 @@ class PagesController < ApplicationController
     render :layout => "application"
   end
 
-  def profile
-
-  end
-
   def find_tutors
     if (@current_user.city != nil) && (@tutors != [])
-      @tutors = User.where(city: @current_user.city)
+      @tutors = User.where(city: @current_user.city).reject{|n| n == @current_user}
     end
 
     render :layout => "application"

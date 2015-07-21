@@ -39,11 +39,34 @@
                                       <div class="connect">
                                           <!-- <button type="button" class="btn btn-success btn-trans"><span class="fa fa-check"></span> Following</button> -->
 
-                                          <%= link_to compose_path(username: params[:username]) do %>
-                                          <button type="button" class="btn btn-primary btn-trans">
-                                            <span class="fa fa-comments"></span> Message
+                                        <% if (@user != @current_user) && (@current_user.following?(@user) )%>
+                                          <button type="button" class="btn btn-success btn-trans">
+                                            <span class="fa fa-comments"></span> Following
                                           </button>
+                                          
+                                          <%= link_to compose_path(username: params[:username]) do %>
+                                            <button type="button" class="btn btn-primary btn-trans">
+                                              <span class="fa fa-comments"></span> Message
+                                            </button>
                                           <% end %>
+                                        <% elsif @user != @current_user %>
+                                          <%= link_to compose_path(username: params[:username]) do %>
+                                            <button type="button" class="btn btn-primary btn-trans">
+                                              <span class="fa fa-comments"></span> Message
+                                            </button>
+                                          <% end %>
+
+                                          <%= link_to follow_path(username: params[:username]), method: :post do %>
+                                            <button type="button" class="btn btn-primary btn-trans">
+                                              <span class="fa fa-comments"></span> Follow
+                                            </button>
+                                          <% end %>
+                                        <% end %>
+                                      </div>
+                                      <div>
+                                        <%= @user.projects.count %> projects
+                                        &nbsp;&nbsp;&nbsp;
+                                        <%= @user.followers.count %> followers
                                       </div>
                                       <!-- <div class="social">
                                           <ul>
