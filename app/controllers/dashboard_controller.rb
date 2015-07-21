@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action do
     @current_user = User.find_by(id: session[:user])
+    signed_in?
   end
 
   def index
