@@ -20,7 +20,7 @@ module Peibel
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf|png|jpg|jpeg|gif)\z/
     # precompile vendor assets
     config.assets.precompile += %w( base.js )
     config.assets.precompile += %w( base.css )
