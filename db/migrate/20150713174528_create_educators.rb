@@ -6,7 +6,7 @@ class CreateEducators < ActiveRecord::Migration
       t.string :username
       t.string :email
       t.string :password_digest
-      t.string :project_id
+      t.integer :project_id
 
       t.timestamps
     end
