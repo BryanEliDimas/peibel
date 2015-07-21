@@ -45,4 +45,7 @@ gem 'mailboxer'
 gem 'payola-payments'
 gem 'dotenv-rails'
 gem 'acts_as_follower'
-gem 'rails_12factor'
+
+group :production do
+  gem 'rails_12factor'
+end
