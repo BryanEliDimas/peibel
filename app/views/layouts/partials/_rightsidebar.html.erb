@@ -4,17 +4,35 @@
         <div id="contact-list-wrapper">
             <div class="heading">
                 <ul>
-                    <li class="new-contact"><a href="javascript:void(0)"><i class="fa fa-plus"></i></a>
-                    </li>
-                    <li>
+                    <!-- <li class="new-contact"><a href="javascript:void(0)"><i class="fa fa-plus"></i></a>
+                    </li> -->
+                    <!-- <li>
                         <input type="text" class="search" placeholder="Search">
                         <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
                         </button>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div id="contact-list">
-
+              <ul>
+                <li>
+                  <div class="row">
+                    <div class="col-md-3">
+                                <span class="avatar">
+                        <img src="<%= image_path('avatar_default.png') %>" class="img-circle" alt="">
+                          <i class="on animated bounceIn"></i>
+                        </span>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="name">
+                                  <!-- NOTE: names of the people you follow will go here and will direct to messaging form --> </div>
+                                <small class="location text-muted"><i class="icon-pointer"></i>
+                                  <!-- user's city will go here -->
+                                </small>
+                            </div>
+                  </div>
+                </li>
+              </ul>
             </div>
             <div id="contact-user">
                 <div class="chat-user active"><span><i class="icon-bubble"></i></span>

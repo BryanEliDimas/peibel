@@ -87,7 +87,7 @@ class PagesController < ApplicationController
   end
 
   def my_projects
-    @projects = Project.where(:user_id => @current_user.id ).reverse
+    @projects = Project.where(:user_id => @current_user.id).reverse
     render :layout => "application"
   end
 
