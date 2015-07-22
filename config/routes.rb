@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount Payola::Engine => '/payola', as: :payola
+  resources :buy
 
   # peibel routes
   get 'signup' => 'pages#signup', as: :signup
