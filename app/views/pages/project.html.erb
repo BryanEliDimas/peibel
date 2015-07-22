@@ -20,7 +20,7 @@
               <%= @project.name %> &nbsp;&nbsp;&nbsp;
               <small><span style="color: green"><%= @project.price %></span></small>
               <%= render 'payola/transactions/checkout',
-      sellable: @project, custom_fields: {'hi' => 'there'} %>
+      sellable: @project %>
               <hr>
             </h1>
             <p>
