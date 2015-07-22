@@ -1,6 +1,3 @@
-require 'dotenv'
-Dotenv.load
-
 Payola.configure do |config|
   # Example subscription:
   #
