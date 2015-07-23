@@ -21,7 +21,7 @@
                   <%= link_to project_path(permalink: proj.permalink) do %>
                     <h1>
                       <%= proj.name %> &nbsp;&nbsp;&nbsp;
-                      <span style="color: green"><%= "$#{proj.price}" unless proj.price == 0 %></span>
+                      <span style="color: green"><%= "$#{display_in_dollars(proj.price)}" unless proj.price == 0 %></span>
                       <br>
                       <small><%= proj.description %></small>
                     </h1>
