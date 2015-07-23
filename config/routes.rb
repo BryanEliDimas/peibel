@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'projects/local' => 'projects#local_projects', as: :local_projects
   post 'projects/choose' => 'projects#choose', as: :choose_project
   get 'projects/my_projects' => 'projects#my_projects', as: :my_projects
-  get 'projects/:permalink' => 'project#show', as: :project
+  get 'projects/:permalink' => 'projects#show', as: :project
 
   # Instructables.com (API) routes
   get 'instructable' => 'pages#instructable', as: :instructable

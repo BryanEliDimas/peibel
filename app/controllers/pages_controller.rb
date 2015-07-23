@@ -33,4 +33,9 @@ class PagesController < ApplicationController
     render layout: "application"
   end
 
+private
+def instructables_api
+  
+end
+
 end
