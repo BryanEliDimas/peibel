@@ -1,6 +1,6 @@
 <div class="pageheader">
     <h2>My Projects</h2>
-    <p class="description">The projects I created</p>
+    <p class="description">Price is in cents</p>
     <div class="breadcrumb-wrapper hidden-xs">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
@@ -11,17 +11,16 @@
 <section id="main-content">
   <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <% if @projects != nil %>
+        <% unless @created_projects == nil %>
 
-          <% @projects.each do |proj| %>
-          <div class="page-header">
+          <% @created_projects.each do |proj| %>
             <div class="panel panel-default">
               <div class="panel-body">
                 <% if proj.permalink != nil %>
                   <%= link_to project_path(permalink: proj.permalink) do %>
                     <h1>
                       <%= proj.name %> &nbsp;&nbsp;&nbsp;
-                      <span style="color: green"><%= "$#{proj.price}" unless proj.price == nil %></span>
+                      <small><span style="color: green"><%= "$#{display_in_dollars(proj.price)}" unless proj.price == nil %></span></small>
                       <br>
                       <small><%= proj.description %></small>
                     </h1>
@@ -30,11 +29,35 @@
               </div>
             </div>
 
-          </div>
           <hr>
           <% end %>
-        <% else %>
-          @projects is nil bro O.o
+        <% end %>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <% unless @purchased_projects == nil %>
+          <h1 class="text-center">Projects I purchased</h1>
+          <br> <hr>
+          <% @purchased_projects.each do |proj| %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <% if proj.permalink != nil %>
+                  <%= link_to project_path(permalink: proj.permalink) do %>
+                    <h1>
+                      <%= proj.name %> &nbsp;&nbsp;&nbsp;
+                      <small><span style="color: green"><%= "$#{proj.price}" unless proj.price == 0 %></span></small>
+                      <br>
+                      <small><%= proj.description %></small>
+                    </h1>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+
+          <hr>
+          <% end %>
         <% end %>
       </div>
   </div>

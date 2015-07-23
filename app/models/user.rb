@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :projects
+  has_many :purchased_projects
+
   has_secure_password
   acts_as_messageable
   acts_as_follower

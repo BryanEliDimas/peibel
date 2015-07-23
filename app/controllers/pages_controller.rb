@@ -17,16 +17,14 @@ class PagesController < ApplicationController
   def create  # create project
     @project = Project.new params.require(:project).permit(:name, :description, :price, :permalink, :content, :outline)
     @project.permalink = SecureRandom.hex(8)
-    @project.user_id = @current_user.id # comes from ApplicationController
+    @project.user_id = @current_user.id
+    # @project.price *= 100
 
     if @project.save
       redirect_to root_path
     else
       render :new_project, alert: "Please complete all steps"
     end
-  end
-
-  def blank_page2
   end
 
   def signup
@@ -87,7 +85,10 @@ class PagesController < ApplicationController
   end
 
   def my_projects
-    @projects = Project.where(:user_id => @current_user.id).reverse
+    @created_projects = Project.where(:user_id => @current_user.id).reverse
+    pps = PurchasedProject.where(user_id: @current_user.id)
+
+    @purchased_projects = Project.where(user_id: pps)
     render :layout => "application"
   end
 
@@ -118,7 +119,7 @@ class PagesController < ApplicationController
   end
 
   def local_projects
-    @projects = Project.joins(:user).where("users.city" => @current_user.city)
+    @projects = Project.joins(:user).where("users.city" => @current_user.city).reverse
 
     render :layout => "application"
   end

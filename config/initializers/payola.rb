@@ -1,9 +1,19 @@
 Payola.configure do |config|
   # Example subscription:
   #
-  # config.subscribe 'payola.package.sale.finished' do |sale|
-  #   EmailSender.send_an_email(sale.email)
-  # end
+  config.subscribe 'payola.project.sale.finished' do |sale|
+    # EmailSender.send_an_email(sale.email)
+
+    # 1) find the current user
+    @purchaser = User.find_by(email: sale.email)
+
+    # 2) create a join table entry to the user and the project
+    # sale.project
+# binding.pry
+    @purchased_project = PurchasedProject.new(project_id: sale.product_id, user_id: @purchaser.id)
+    @purchased_project.save
+
+  end
   #
   # In addition to any event that Stripe sends, you can subscribe
   # to the following special payola events:

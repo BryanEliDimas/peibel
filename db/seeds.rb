@@ -6,7 +6,7 @@
   password: "12345678",
   password_confirmation: "12345678",
   bio: Faker::Lorem.paragraph,
-  skills: Faker::Lorem.word,
+  skills: "Javascript, Angular, ReactJS, UX",
   city: "houston",
   state: "texas")
 end

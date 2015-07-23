@@ -1,6 +1,6 @@
 <div class="pageheader">
-    <h2>Local Projects</h2>
-    <p class="description">Projects that people in your same city have created</p>
+    <h2>Projects made in Houston </h2>
+    <p class="description">Price is in cents</p>
     <div class="breadcrumb-wrapper hidden-xs">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
@@ -21,7 +21,7 @@
                   <%= link_to project_path(permalink: proj.permalink) do %>
                     <h1>
                       <%= proj.name %> &nbsp;&nbsp;&nbsp;
-                      <span style="color: green"><%= "$#{proj.price}" unless proj.price == nil %></span>
+                      <span style="color: green"><%= "$#{proj.price}" unless proj.price == 0 %></span>
                       <br>
                       <small><%= proj.description %></small>
                     </h1>
@@ -33,8 +33,6 @@
           </div>
           <hr>
           <% end %>
-        <% else %>
-          @projects is nil bro O.o
         <% end %>
       </div>
   </div>
