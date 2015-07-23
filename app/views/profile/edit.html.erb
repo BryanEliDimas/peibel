@@ -78,7 +78,7 @@
             </div>
             <div class="panel-body">
                 <%= simple_form_for @current_user, url: update_title_path, method: :put do |f| %>
-                  <%= f.input :title, placeholder: "the name of your city" %>
+                  <%= f.input :title, placeholder: "Your professional title or tagline" %>
                   <%= f.submit "Update", class: "btn btn-primary" %>
                 <% end %>
             </div>

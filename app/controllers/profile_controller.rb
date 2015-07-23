@@ -30,7 +30,7 @@ class ProfileController < ApplicationController
     # @current_user.save
     @current_user.update(bio: params[:user][:bio])
 
-    redirect_to profile_path(username: @current_user.username)
+    redirect_to edit_profile_path
   end
 
   def update_skills
@@ -38,7 +38,7 @@ class ProfileController < ApplicationController
     # @current_user.save
     @current_user.update(skills: params[:user][:skills])
 
-    redirect_to profile_path(username: @current_user.username)
+    redirect_to edit_profile_path
   end
 
   def update_city
@@ -46,7 +46,7 @@ class ProfileController < ApplicationController
     # @current_user.update(city: city, state: state)
     @current_user.update(city: params[:user][:city].downcase)
 
-    redirect_to profile_path(username: @current_user.username)
+    redirect_to edit_profile_path
   end
 
   def inbox
@@ -68,7 +68,7 @@ class ProfileController < ApplicationController
   def update_title
     @current_user.update(title: params[:user][:title].downcase)
 
-    redirect_to profile_path(username: @current_user.username)
+    redirect_to edit_profile_path
   end
 
   def follow # POST request
