@@ -1,7 +1,7 @@
 20.times do
   User.create(first_name: Faker::Name.name,
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.user_name(Faker::Internet.user_name, %w(. _ -)),
+  username: Faker::Internet.user_name(Faker::Internet.user_name, %w(-)),
   email: Faker::Internet.free_email,
   password: "12345678",
   password_confirmation: "12345678",
