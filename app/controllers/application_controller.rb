@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
 
 
   def signed_in?
-    if (session[:user] == nil)
+    if (session == nil || session[:user] == nil)
       redirect_to signup_path  # sign up path
+    else
+      @current_user = User.find_by(id: session[:user])
     end
   end
 

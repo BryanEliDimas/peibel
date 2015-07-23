@@ -1,0 +1,184 @@
+<div class="pageheader">
+              <h1>Profile</h1>
+              <div class="breadcrumb-wrapper hidden-xs">
+                  <span class="label">You are here:</span>
+                  <ol class="breadcrumb">
+                      <li><a href="/">Dashboard</a>
+                      </li>
+                      <li>Pages</li>
+                      <li class="active">Profile</li>
+                  </ol>
+              </div>
+          </div>
+          <section id="main-content">
+              <div class="row">
+                  <div class="col-md-12">
+                      <section class="panel">
+                          <div class="panel-body profile-wrapper">
+                              <div class="col-md-2">
+                                  <div class="profile-pic text-center">
+                                      <img  src="<%= image_path('avatar_default.png') %>" alt="" class="img-circle">
+                                  </div>
+                                  <br>
+                                  <% if @user.city != nil %>
+                                    <div class="text-center"><i class="fa fa-map-marker"></i> <%= @user.city.capitalize %><%= ", #{@user.state.capitalize}" unless @user.state == nil %></div>
+                                  <% end %>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="profile-info">
+                                      <h1><%= @user.full_name %></h1>
+                                      <span class="text-muted"><%= @user.title %></span>
+                                      <p>
+                                        <% if @bio != nil %>
+                                          <%= @bio %>
+                                        <% else %>
+                                          Your very awesome bio goes here. The link to edit it is under your Avatar in the dashboard (e.g. Edit Account).
+                                        <% end %>
+                                          <!-- I specialize in agile web development with Ruby on Rails. I have built several web applications in a matter of just 9 weeks while attending The Iron Yard academy. My prior experience working at RaptorBird Robotics has allowed me to pick up new programming languages very quickly. -->
+                                      </p>
+                                      <div class="connect">
+                                          <!-- <button type="button" class="btn btn-success btn-trans"><span class="fa fa-check"></span> Following</button> -->
+
+                                        <% if (@user != @current_user) && (@current_user.following?(@user) )%>
+                                          <button type="button" class="btn btn-success btn-trans">
+                                            <span class="fa fa-comments"></span> Following
+                                          </button>
+                                          
+                                          <%= link_to compose_path(username: params[:username]) do %>
+                                            <button type="button" class="btn btn-primary btn-trans">
+                                              <span class="fa fa-comments"></span> Message
+                                            </button>
+                                          <% end %>
+                                        <% elsif @user != @current_user %>
+                                          <%= link_to compose_path(username: params[:username]) do %>
+                                            <button type="button" class="btn btn-primary btn-trans">
+                                              <span class="fa fa-comments"></span> Message
+                                            </button>
+                                          <% end %>
+
+                                          <%= link_to follow_path(username: params[:username]), method: :post do %>
+                                            <button type="button" class="btn btn-primary btn-trans">
+                                              <span class="fa fa-comments"></span> Follow
+                                            </button>
+                                          <% end %>
+                                        <% end %>
+                                      </div>
+                                      <div>
+                                        <%= @user.projects.count %> projects
+                                        &nbsp;&nbsp;&nbsp;
+                                        <%= @user.followers.count %> followers
+                                      </div>
+                                      <!-- <div class="social">
+                                          <ul>
+                                              <li><a href="#"><i class="fa fa-lg fa-facebook"></i></a>
+                                              </li>
+                                              <li><a href="#"><i class="fa fa-lg fa-twitter"></i></a>
+                                              </li>
+                                              <li><a href="#"><i class="fa fa-lg fa-github"></i></a>
+                                              </li>
+                                              <li><a href="#"><i class="fa fa-lg fa-linkedin"></i></a>
+                                              </li>
+                                              <li><a href="#"><i class="fa fa-lg fa-instagram"></i></a>
+                                              </li>
+                                              <li><a href="#"><i class="fa fa-lg fa-dribbble"></i></a>
+                                              </li>
+
+                                          </ul>
+                                      </div> -->
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-md-6">
+                      <section class="panel  timeline-post-to">
+                          <!-- <div class="panel-body">
+                              <form role="form">
+                                  <textarea class="form-control" placeholder="What's on your mind?"></textarea>
+                                  <div class="row">
+                                      <div class="col-sm-6">
+                                          <a class="btn btn-sm btn-default"><i class="fa fa-camera"></i></a>
+                                          <a class="btn btn-sm btn-default"><i class="fa fa-video-camera"></i></a>
+                                          <a class="btn btn-sm btn-default"><i class="fa fa-music"></i></a>
+                                          <a class="btn btn-sm btn-default"><i class="fa fa-map-marker"></i></a>
+                                      </div>
+                                      <div class="col-sm-6 text-right">
+                                          <button type="submit" class="btn btn-primary">Post</button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div> -->
+                      </section>
+                      <section class="panel  timeline-post">
+                          <div class="panel-body">
+                              <ul>
+                                <h1 class="text-center">SKILLS</h1>
+                                  <% if @skills != nil %>
+                                    <% @skills.each do |skill| %>
+                                    <li>
+                                        <div class="date">
+                                            <span><i class="icon-energy" style="font-size: 150%"></i></span>
+                                            <!-- <span class="small">Feb</span> -->
+                                        </div>
+                                        <!-- <h4>Lorem ipsum dolor sit</h4> -->
+                                        <p>
+                                            <h3><%= skill %></h3>
+                                        </p>
+                                    </li>
+                                    <% end %>
+                                  <% else %>
+                                  <li>
+                                      <div class="date">
+                                          <span><i class="icon-energy" style="font-size: 150%"></i></span>
+                                          <!-- <span class="small">Feb</span> -->
+                                      </div>
+                                      <!-- <h4>Lorem ipsum dolor sit</h4> -->
+                                      <p>
+                                          Skill #1
+                                      </p>
+                                  </li>
+                                  <li>
+                                      <div class="date">
+                                          <span><i class="icon-energy" style="font-size: 150%"></i></span>
+                                          <!-- <span class="small">Feb</span> -->
+                                      </div>
+                                      <!-- <h4>Lorem ipsum dolor sit</h4> -->
+                                      <p>
+                                          Skill #2
+                                      </p>
+                                  </li>
+                                  <% end %>
+                              </ul>
+
+                          </div>
+                      </section>
+
+                  </div>
+                  <div class="col-md-6">
+                      <section class="panel  timeline-post-to">
+                      </section>
+                      <section class="panel  timeline-post">
+                          <div class="panel-body">
+                              <ul>
+                                <h1 class="text-center">PROJECTS</h1>
+                                  <% @projects.each do |proj| %>
+                                      <li>
+                                          <div class="date">
+                                              <span style="font-size: 12px"><%= proj.created_at.strftime("%m/%d\r'%y") unless proj == nil %></span>
+                                          </div>
+                                          <%= link_to project_path(permalink: proj.permalink) do %>
+                                            <h4><%= proj.name %></h4>
+                                          <% end %>
+                                          <p>
+                                              <%= proj.description %>
+                                          </p>
+                                      </li>
+                                  <% end %>
+                              </ul>
+
+                          </div>
+                      </section>
+
+                  </div>
+              </div>
+          </section>

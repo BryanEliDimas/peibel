@@ -19,7 +19,7 @@
             <% end %>
             <div class="caption">
               <h4><%= item["title"] %></h4>
-              <%= link_to project_details_path(project_id: item["id"]) do %>
+              <%= link_to instructable_path(project_id: item["id"]) do %>
                 <%= button_tag "View", class: "btn btn-primary" %>
               <% end %>
             </div>

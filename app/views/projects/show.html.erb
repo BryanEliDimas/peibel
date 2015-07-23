@@ -1,0 +1,37 @@
+<div class="pageheader">
+   <h1>View Project</h1>
+   <p class="description">Price is in cents</p>
+   <div class="breadcrumb-wrapper hidden-xs">
+       <span class="label">You are here:</span>
+       <ol class="breadcrumb">
+           <li><a href="/">Dashboard</a>
+           </li>
+           <li>Pages</li>
+           <li class="active">Project Details</li>
+       </ol>
+   </div>
+</div>
+<section id="main-content" class="animated fadeInUp">
+  <div class="row panel panel-default">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="">
+        <div class="">
+          <div class="panel-body">
+            <h1>
+              <%= @project.name %> &nbsp;&nbsp;&nbsp;
+              <% unless (@project.price <= 0) %>
+                <small><span style="color: green"><%= display_in_dollars(@project.price) %></span></small>
+                <%= render 'payola/transactions/checkout', sellable: @project, email: @current_user.email %>
+                <hr>
+              <% end %>
+            </h1>
+            <p>
+              <%= @project.content.html_safe %>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,9 +1,9 @@
 class ProfileController < ApplicationController
   before_action do
-    @current_user = User.find_by(id: session[:user])
+    signed_in?
   end
 
-  def profile
+  def show
     @user = User.find_by(username: params[:username])
     @bio = @user.bio
     @followers = @user.all_follows
@@ -71,7 +71,7 @@ class ProfileController < ApplicationController
     redirect_to profile_path(username: @current_user.username)
   end
 
-  def follow
+  def follow # POST request
     who = User.find_by(username: params[:username])
 
     if who != @current_user
@@ -80,7 +80,6 @@ class ProfileController < ApplicationController
     else
       redirect_to root_path, alert: "Unable to follow yourself."
     end
-
   end
 
 end

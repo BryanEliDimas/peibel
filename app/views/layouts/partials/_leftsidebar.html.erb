@@ -59,17 +59,17 @@
                           <i class="fa  fa-fw fa-tachometer"></i> Dashboard
                         <% end %>
                     </li>
-                    <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('new_project') %>">
+                    <li class="nav-dropdown <%= 'active' if controller?('projects') && action?('new') %>">
                         <%= link_to new_project_path do %>
                           <i class="fa fa-fw fa-file-text"></i> New Project
                         <% end %>
                     </li>
-                    <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('my_projects') %>">
+                    <li class="nav-dropdown <%= 'active' if controller?('projects') && action?('my_projects') %>">
                         <%= link_to my_projects_path do %>
                           <i class="fa fa-fw fa-file-text"></i> My Projects
                         <% end %>
                     </li>
-                    <li class="nav-dropdown <%= 'active' if controller?('pages') && action?('local_projects') %>">
+                    <li class="nav-dropdown <%= 'active' if controller?('projects') && action?('local_projects') %>">
                         <%= link_to local_projects_path do %>
                           <i class="icon-map"></i> Local Projects
                         <% end %>

@@ -2,70 +2,18 @@ require 'http'
 
 class PagesController < ApplicationController
   before_action do
-    @current_user = User.find_by(id: session[:user])
+    signed_in?
   end
 
-  def new_project
-    @project = Project.new
-    render :layout => "application"
-  end
+  def instructable
+    project_id = params[:project_id]
 
-  def project_basic_details
-    # show projects page
-  end
+    response = Http.headers("X-Mashape-Key" => "CLIYw538fSmshhOhHM1vZDHfZmvTp1yuWWljsnQW0uoRDyPWAo", "Accept" => "application/json").get("https://devru-instructables.p.mashape.com/json-api/showInstructable?id=#{project_id}")
+    json = JSON.parse response
+    data = json.to_hash
+    @project = data
 
-  def create  # create project
-    @project = Project.new params.require(:project).permit(:name, :description, :price, :permalink, :content, :outline)
-    @project.permalink = SecureRandom.hex(8)
-    @project.user_id = @current_user.id
-    # @project.price *= 100
-
-    if @project.save
-      redirect_to root_path
-    else
-      render :new_project, alert: "Please complete all steps"
-    end
-  end
-
-  def signup
-    @user = User.new
-    render :layout => "pages"
-  end
-
-  def signup_post
-    @user = User.new params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
-    if @user.save
-      session[:user] = @user.id
-      session[:username] = @user.username
-      session[:full_name] = @user.full_name
-      redirect_to root_path, success: "Cool! You're signed up #{@user.first_name}!"
-    else
-      render :educator_signup, alert: "Something wrong."
-    end
-  end
-
-  def signin
-  end
-
-  def signin_post
-    email = params[:session][:email]
-    password = params[:session][:password]
-
-    user = User.find_by(email: email)
-
-    if (user) && (user.authenticate password)
-      session[:user] = user.id
-      session[:username] = user.username
-      session[:full_name] = user.full_name
-      redirect_to root_path, success: "You're signed in #{user.full_name}!"
-    else
-      render :signin, notice: "Please try again."
-    end
-  end
-
-  def signout
-    session.delete :user
-    redirect_to root_path
+    render layout: "application"
   end
 
   def instructables
@@ -73,35 +21,8 @@ class PagesController < ApplicationController
     response = Http.headers("X-Mashape-Key" => "CLIYw538fSmshhOhHM1vZDHfZmvTp1yuWWljsnQW0uoRDyPWAo", "Accept" => "application/json").get("https://devru-instructables.p.mashape.com/list?limit=20&offset=0&sort=recent&type=id&category=technology")
     json = JSON.parse response
     data = json.to_hash
-
     @items = data["items"].first(20)
-
-    render :layout => "application"
-  end
-
-  def choose_project
-    the_project_id = params[:instructables_id]
-    @current_user.projects = the_project_id
-  end
-
-  def my_projects
-    @created_projects = Project.where(:user_id => @current_user.id).reverse
-    pps = PurchasedProject.where(user_id: @current_user.id)
-
-    @purchased_projects = Project.where(user_id: pps)
-    render :layout => "application"
-  end
-
-  def project_details
-    project_id = params[:project_id]
-
-    response = Http.headers("X-Mashape-Key" => "CLIYw538fSmshhOhHM1vZDHfZmvTp1yuWWljsnQW0uoRDyPWAo", "Accept" => "application/json").get("https://devru-instructables.p.mashape.com/json-api/showInstructable?id=#{project_id}")
-    json = JSON.parse response
-    data = json.to_hash
-
-    @project = data
-
-    render :layout => "application"
+    render layout: "application"
   end
 
   def find_tutors
@@ -109,19 +30,7 @@ class PagesController < ApplicationController
       @tutors = User.where(city: @current_user.city).reject{|n| n == @current_user}
     end
 
-    render :layout => "application"
-  end
-
-  def project
-    @project = Project.find_by(permalink: params[:permalink])
-
-    render :layout => "application"
-  end
-
-  def local_projects
-    @projects = Project.joins(:user).where("users.city" => @current_user.city).reverse
-
-    render :layout => "application"
+    render layout: "application"
   end
 
 end

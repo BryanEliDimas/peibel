@@ -1,8 +1,5 @@
 class DashboardController < ApplicationController
-  helper ApplicationHelper
-  
   before_action do
-    @current_user = User.find_by(id: session[:user])
     signed_in?
   end
 

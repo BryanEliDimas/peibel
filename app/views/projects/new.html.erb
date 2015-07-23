@@ -1,0 +1,35 @@
+<% if alert %>
+  <%= alert %>
+<% elsif notice %>
+  <%= notice %>
+<% end %>
+
+<div class="pageheader">
+    <h2>New Project Page</h2>
+    <p class="description">Create new project</p>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li class="active">Blank Page</li>
+        </ol>
+    </div>
+</div>
+<section id="main-content">
+    <div class="row">
+      <div class="col-md-12">
+          <h1>NEW PROJECT</h1>
+          <hr>
+          <%= simple_form_for @project do |f| %>
+            <%= f.input :name, placeholder: "Title of your project", label: false %>
+            <%= f.input :description, placeholder: "Short description", label: false %>
+            <%= f.input :outline, placeholder: "Must include for paid projects. Numbered steps 1) , 2) , 3) , etc.", label: false %>
+            <%= f.input :price, as: :integer, placeholder: "(Enter 2500 for $25.00)", input_html: {style: "width: 14em"}, label: false %>
+            <%= f.input :content, as: :hidden, id: "project-content" %>
+
+            <div id="project_editor"></div>
+
+            <%= f.submit class: "btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+</section>
