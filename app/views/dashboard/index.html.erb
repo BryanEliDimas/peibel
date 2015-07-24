@@ -10,12 +10,17 @@
 </div>
 <section id="main-content">
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-10 col-md-offset-1">
           <div class="panel panel-default">
               <div class="panel-body">
                 <% @users_with_projects.each do |user| %>
                   <%= link_to project_path(permalink: user.projects.last.permalink) do %>
-                    <h1><%= user.projects.last.name %></h1>
+                    <h1>
+                      <%= user.projects.last.name %>
+                      <span style="color: green"><%= "$#{display_in_dollars(user.projects.last.price)}" unless user.projects.last.price == 0 %></span>
+                      <small>by <%= user.username %></small>
+                      <small>on <%= user.projects.last.created_at.strftime('%B %e at %l:%M %P') %></small>
+                    </h1>
                   <% end %>
                     <p>
                       <%= user.projects.last.description %>
