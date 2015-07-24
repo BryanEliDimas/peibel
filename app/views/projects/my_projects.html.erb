@@ -48,6 +48,7 @@
                     <h1>
                       <%= proj.name %> &nbsp;&nbsp;&nbsp;
                       <small><span style="color: green"><%= "$#{proj.price}" unless proj.price == 0 %></span></small>
+                      <small>by <%= proj.user.username %></small>
                       <br>
                       <small><%= proj.description %></small>
                     </h1>
