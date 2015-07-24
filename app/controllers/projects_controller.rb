@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
-  
+  before_action do
+    signed_in?
+  end
+
   def new
     @project = Project.new
   end

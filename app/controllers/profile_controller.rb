@@ -1,4 +1,7 @@
 class ProfileController < ApplicationController
+  before_action do
+    signed_in?
+  end
 
   def show
     @user = User.find_by(username: params[:username])

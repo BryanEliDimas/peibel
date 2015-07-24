@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :success # add custom flash message
 
-  before_action :signed_in?, only: [:dashboard, :pages, :projects]
+  # before_action :signed_in?, only: [:dashboard, :pages, :projects]
 
   def signed_in?
     if (session == nil || session[:user] == nil)
