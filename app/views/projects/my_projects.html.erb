@@ -37,22 +37,20 @@
 
   <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <% unless @purchased_projects == nil %>
+        <% unless @purchased_projects == [] %>
           <h1 class="text-center">Projects I purchased</h1>
           <br> <hr>
           <% @purchased_projects.each do |proj| %>
             <div class="panel panel-default">
               <div class="panel-body">
-                <% if proj.permalink != nil %>
-                  <%= link_to project_path(permalink: proj.permalink) do %>
-                    <h1>
-                      <%= proj.name %> &nbsp;&nbsp;&nbsp;
-                      <small><span style="color: green"><%= "$#{display_in_dollars(proj.price)}" unless proj.price == 0 %></span></small>
-                      <small>by <%= proj.user.username %></small>
-                      <br>
-                      <small><%= proj.description %></small>
-                    </h1>
-                  <% end %>
+                <%= link_to project_path(permalink: proj.permalink) do %>
+                  <h1>
+                    <%= proj.name %> &nbsp;&nbsp;&nbsp;
+                    <small><span style="color: green"><%= "$#{display_in_dollars(proj.price)}" unless proj.price == 0 %></span></small>
+                    <small>by <%= proj.user.username %></small>
+                    <br>
+                    <small><%= proj.description %></small>
+                  </h1>
                 <% end %>
               </div>
             </div>

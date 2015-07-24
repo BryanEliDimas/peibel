@@ -28,9 +28,12 @@ class ProjectsController < ApplicationController
 
   def my_projects
     @created_projects = Project.where(:user_id => @current_user.id).reverse
-    pps = PurchasedProject.where(user_id: @current_user.id)
+    # pps = PurchasedProject.where(user_id: @current_user.id)
 
-    @purchased_projects = Project.where(user_id: pps)
+    # @purchased_projects = Project.where(user_id: pps.id)
+
+    @purchased_projects = Project.joins(:purchased_projects).where("purchased_projects.user_id" => @current_user.id)
+
     render :layout => "application"
   end
 
