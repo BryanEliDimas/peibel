@@ -1,10 +1,7 @@
 require 'http'
 
 class PagesController < ApplicationController
-  before_action do
-    signed_in?
-  end
-
+  
   def instructable
     project_id = params[:project_id]
 
@@ -35,7 +32,7 @@ class PagesController < ApplicationController
 
 private
 def instructables_api
-  
+
 end
 
 end
